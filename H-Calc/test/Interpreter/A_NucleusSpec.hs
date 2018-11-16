@@ -5,9 +5,7 @@ module Interpreter.A_NucleusSpec (spec) where
 
   import Interpreter.A_Nucleus
   import Interpreter.Transfos
-  -- import Interpreter.Interpreter
 
-  -- import Control.Exception (evaluate)
   import Test.Hspec
   import Relude hiding (fromInteger, fromRational)
 
