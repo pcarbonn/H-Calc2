@@ -1,8 +1,11 @@
-resolver: lts-12.9
+resolver: lts-12.14
 
 packages:
 - ./open-adt
 - ./open-adt-tutorial
+- ./H-Calc
 
 extra-deps:
 - row-types-0.2.3.0
+- base-noprelude-4.11.1.0
+- fmt-0.6.1@sha256:73cb68707c03ab1a568a5e9bb6d7f796553165b8553e70a528e333622ffcfaa0
