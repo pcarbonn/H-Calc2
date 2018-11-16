@@ -5,13 +5,13 @@ module Interpreter.B_Add where
   --    (Add α (i1,i2))
   -------------------------------------------------------
 
-  import Interpreter.A_Nucleus
-  import Interpreter.Transfos
+  -- import Interpreter.A_Nucleus
+  -- import Interpreter.Transfos
 
-  import Fmt
-  import Text.Megaparsec
-  import Text.Megaparsec.Char as M
-  import Text.Show
+  -- import Fmt
+  -- import Text.Megaparsec
+  -- import Text.Megaparsec.Char as M
+  -- import Text.Show
 
 
   -- define nodes

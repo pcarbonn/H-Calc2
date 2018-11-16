@@ -2,12 +2,12 @@
 {-# LANGUAGE RebindableSyntax #-}
 module Interpreter.B_AddSpec (spec) where
 
-  import Interpreter.A_Nucleus
-  import Interpreter.B_Add
-  import Interpreter.Interpreter
-  import Interpreter.Transfos
+  -- import Interpreter.A_Nucleus
+  -- import Interpreter.B_Add
+  -- import Interpreter.Interpreter
+  -- import Interpreter.Transfos
 
-  import Control.Exception (evaluate)
+  -- import Control.Exception (evaluate)
   import Test.Hspec
   import Relude hiding (fromInteger, fromRational)
 
@@ -16,4 +16,4 @@ module Interpreter.B_AddSpec (spec) where
   spec = do
     describe "B_Add" $ do
       it "says ok" $ do
-        "ok" `shouldBe` "ok"
+        "ok" `shouldBe` ("ok" :: Text)

@@ -4,13 +4,13 @@ module Interpreter.C_Mul where
   --    (Mul α (i1,i2))
   -------------------------------------------------------
 
-  import Interpreter.A_Nucleus
-  import Interpreter.B_Add
-  import Interpreter.Transfos
+  -- import Interpreter.A_Nucleus
+  -- import Interpreter.B_Add
+  -- import Interpreter.Transfos
 
-  import Fmt
-  import Text.Megaparsec.Char as M
-  import Text.Show
+  -- import Fmt
+  -- import Text.Megaparsec.Char as M
+  -- import Text.Show
 
 
   -- define nodes
