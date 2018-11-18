@@ -44,6 +44,7 @@ library
                     , LambdaCase
                     , MultiParamTypeClasses
                     , MultiWayIf
+                    , OverloadedLabels
                     , OverloadedStrings
                     , PatternSynonyms
                     , ScopedTypeVariables
@@ -81,6 +82,7 @@ executable H-Calc
                     , LambdaCase
                     , MultiParamTypeClasses
                     , MultiWayIf
+                    , OverloadedLabels
                     , OverloadedStrings
                     , PatternSynonyms
                     , ScopedTypeVariables
@@ -110,6 +112,7 @@ test-suite spec
   default-language:   Haskell2010
   ghc-options:        -Wall
   default-extensions: GADTs
+                    , OverloadedLabels
                     , OverloadedStrings
                     , TemplateHaskell
   build-tool-depends: hspec-discover:hspec-discover == 2.*

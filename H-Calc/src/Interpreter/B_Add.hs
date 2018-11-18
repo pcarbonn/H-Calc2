@@ -24,10 +24,19 @@ module Interpreter.B_Add where
   data FloatValF e = FloatValF' e Float  deriving (Eq, Functor, Show)
   data AddF      e =      AddF' e (e, e) deriving (Eq, Functor, Show)
 
-  mkVarPattern ''ValF "valF" "Val" "ValF"
-  mkVarPattern ''FloatValF    "floatValF"    "FloatVal"    "FloatValF"
-  mkVarPattern ''AddF       "addF"       "Add"       "AddF"
+  mkVarPattern ''ValF      "valF"      "Val"      "ValF"
+  mkVarPattern ''FloatValF "floatValF" "FloatVal" "FloatValF"
+  mkVarPattern ''AddF      "addF"      "Add"      "AddF"
 
+  type AST1F = AST0F .+ ("typF"       .== TypF)
+  type AST0F  = (("hErrorF"    .== HErrorF)
+              .+ ("emptyNoteF" .== EmptyNoteF)
+              .+ ("valF"       .== ValF)
+              .+ ("floatValF"  .== FloatValF)
+              .+ ("addF"       .== AddF))
+
+  type AST1 = OpenADT AST1F
+  type AST0 = OpenADT AST0F
 
   -- syntactic sugar for embedded DSL
   --------------------------------------------------------
