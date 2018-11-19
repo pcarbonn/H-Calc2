@@ -16,10 +16,10 @@ module Interpreter.C_MulSpec (spec) where
         showAST ((5 .* 3) :: AST2 )
         `shouldBe` "(5 * 3)"
       it "distributes 1" $ do
-        showAST (demultiply $ distribute $ ((2 .+ 1) .* 5 :: AST2) :: AST1)
+        showAST (demultiply $ distribute $ ((2 .+. 1) .* 5 :: AST2) :: AST1)
         `shouldBe` "((5 + 5) + 5)"
       it "distributes 2" $ do
-        showAST (demultiply $ distribute $ (2 .* (2 .+ 1) :: AST2) :: AST1)
+        showAST (demultiply $ distribute $ (2 .* (2 .+. 1) :: AST2) :: AST1)
         `shouldBe` "((2 + 2) + (1 + 1))"
 
 
@@ -28,4 +28,4 @@ module Interpreter.C_MulSpec (spec) where
       it "distributes 4" $ do
         showAST (demultiply(2 .* (2 .* 5) :: AST2) :: AST1) `shouldBe` "((5 + 5) + (5 + 5))"
       it "distributes 5" $ do
-        showAST (demultiply((2 .* 5) .+ 1 :: AST2) :: AST1) `shouldBe` "((5 + 5) + 1)"
+        showAST (demultiply((2 .* 5) .+. 1 :: AST2) :: AST1) `shouldBe` "((5 + 5) + 1)"

@@ -51,10 +51,10 @@ module Interpreter.B_Add where
                 => Rational -> OpenADT xs
   fromRational i = FloatVal EmptyNote $ realToFrac i
 
-  (.+) ::         ( OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)
+  (.+.) ::         ( OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)
                   , OpenAlg xs "addF" AddF (OpenADT xs))
                 => OpenADT xs -> OpenADT xs -> OpenADT xs
-  (.+) a b = Add EmptyNote (a,b)
+  (.+.) a b = Add EmptyNote (a,b)
 
   neg ::          ( OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)
                   , OpenAlg xs "hErrorF" HErrorF (OpenADT xs)
@@ -163,3 +163,24 @@ module Interpreter.B_Add where
                          HError α $ format "can't add `{}` whose type is {} with `{}` whose type is "
                                     (showAST v1) (show t1) (showAST v2) (show t2)
                 (_,_) -> HError α "Missing type info in addition"
+
+
+
+  -- Tree reduction : EADT xs -> EADT ys
+  -------------------------------------------------------
+
+
+  instance ( OpenAlg xs "addF" AddF (OpenADT xs)
+           , OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs))
+           => RemoveAnnotation xs AddF where
+    removeAnnotation' (AddF' _ (v1, v2)) = Add EmptyNote (v1, v2)
+
+  instance ( OpenAlg xs "valF" ValF (OpenADT xs)
+           , OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs))
+           => RemoveAnnotation xs ValF where
+    removeAnnotation' (ValF' _ i) = Val EmptyNote i
+
+  instance ( OpenAlg xs "floatValF" FloatValF (OpenADT xs)
+           , OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs))
+           => RemoveAnnotation xs FloatValF where
+    removeAnnotation' (FloatValF' _ f) = FloatVal EmptyNote f

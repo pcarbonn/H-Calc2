@@ -95,3 +95,18 @@ module Interpreter.A_Nucleus where
     where go (Typ _ t) = Just t
           go EmptyNote = Nothing -- no annotation anymore
           go α = getType $ getAnnotation $ unfix α
+
+
+  -- Tree reduction : EADT xs -> EADT ys
+  -------------------------------------------------------
+
+  instance (OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)) => RemoveAnnotation xs TypF where
+    removeAnnotation' (TypF' _ _) = EmptyNote
+
+  instance (OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)) => RemoveAnnotation xs EmptyNoteF where
+    removeAnnotation' (EmptyNoteF') = EmptyNote
+
+  instance ( OpenAlg xs "emptyNoteF" EmptyNoteF (OpenADT xs)
+           , OpenAlg xs "hErrorF" HErrorF (OpenADT xs))
+           => RemoveAnnotation xs HErrorF where
+    removeAnnotation' (HErrorF' _ e) = HError EmptyNote e

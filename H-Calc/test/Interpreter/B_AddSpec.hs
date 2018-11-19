@@ -23,5 +23,5 @@ module Interpreter.B_AddSpec (spec) where
         showAST (Add (Typ EmptyNote TInt) (5,3) :: AST1 )
         `shouldBe` "(5 + 3) :: TInt"
       it "sets type" $ do
-        showAST ((5 .+ 3) :: AST1 )
+        showAST ((5 .+. 3) :: AST1 )
         `shouldBe` "(5 + 3)"

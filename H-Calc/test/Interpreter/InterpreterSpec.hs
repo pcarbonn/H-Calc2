@@ -2,18 +2,20 @@
 {-# LANGUAGE RebindableSyntax #-}
 module Interpreter.InterpreterSpec (spec) where
 
-  -- import Interpreter.A_Nucleus
-  -- import Interpreter.B_Add
-  -- import Interpreter.C_Mul
-  -- import Interpreter.Interpreter
-  -- import Interpreter.Transfos
+  import Interpreter.Interpreter
 
-  -- import Control.Exception (evaluate)
   import Test.Hspec
   import Relude hiding (fromInteger, fromRational)
+
+  shouldBe' :: Text -> Text -> Expectation
+  shouldBe' = shouldBe
 
   spec :: Spec
   spec = do
     describe "Interpreter" $ do
-      it "says ok" $ do
-        "ok" `shouldBe` ("ok" :: Text)
+      it "interprets" $ do
+        show (interpret "-5") `shouldBe'` "RInt (-5)"
+      it "interprets" $ do
+        show (interpret "-5.3") `shouldBe'` "RFloat (-5.3)"
+      it "interprets" $ do
+        show (interpret "((2 +1 {- test -})*5.0)") `shouldBe'` "RFloat 15.0"

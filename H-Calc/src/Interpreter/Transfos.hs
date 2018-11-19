@@ -8,7 +8,7 @@ module Interpreter.Transfos where
   import           Data.Row
 
   -- recursion-schemes
-  import           Data.Functor.Foldable                    (cata
+  import           Data.Functor.Foldable                    (cata --, Fix(..)
                                                             )
 
 
@@ -57,3 +57,16 @@ module Interpreter.Transfos where
   -------------------------------------------------------
 
   -- removeAnnotation
+
+  class RemoveAnnotation ys (f :: * -> *) where
+    removeAnnotation'      :: f (OpenADT ys) -> OpenADT ys
+
+  instance (Forall xs (RemoveAnnotation ys)) => RemoveAnnotation ys (VarF xs) where
+    removeAnnotation' = varFAlg @(RemoveAnnotation ys) removeAnnotation'
+
+  -- instance {-# OVERLAPPABLE #-} RemoveAnnotation ys f where
+  --   removeAnnotation' = Fix . VarF -- VF -- if f is in result type, keep as is
+
+  removeAnnotation :: (Forall xs Functor, RemoveAnnotation ys (VarF xs))
+      => OpenADT xs -> OpenADT ys
+  removeAnnotation = cata removeAnnotation'
