@@ -95,7 +95,7 @@ With this apparatus, we can now represent `1` and `(1+2)` with the following for
     one = Val EmptyNote 1
 
     oneTwo :: AST0
-    oneTwo = Add (Typ EmptyNote TInt) (Val EmptyNote 1, Val EmptyNote 2)
+    oneTwo = Add EmptyNote (Val EmptyNote 1, Val EmptyNote 2)
 ```
 
 We can easily extend what our trees can represent by adding new types of nodes, for example a multiplication:
